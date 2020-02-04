@@ -1,4 +1,4 @@
 language: python
 script: 
-  - coverage run --source=src python test/test_utils.py
+  - coverage run -m unittest discover
 after_success: coveralls
