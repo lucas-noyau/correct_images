@@ -5,9 +5,9 @@ import json
 from cv2 import imread, imwrite
 import numpy as np
 import sys
-CURR_DIR = os.path.dirname(os.path.abspath('../src/utils.py'))
-print(CURR_DIR)
-sys.path.append(CURR_DIR)
+SRC_DIR = os.path.dirname(os.path.abspath('./src/utils.py'))
+print(SRC_DIR)
+sys.path.append(SRC_DIR)
 import utils
 
 class TestUtils(unittest.TestCase):
