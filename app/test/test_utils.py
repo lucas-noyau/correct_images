@@ -8,7 +8,7 @@ import sys
 SRC_DIR = os.path.dirname(os.path.abspath('./src/utils.py'))
 print(SRC_DIR)
 sys.path.append(SRC_DIR)
-import utils
+import app.src.utils
 
 class TestUtils(unittest.TestCase):
 
