@@ -4,8 +4,7 @@ import os
 import json
 from cv2 import imread, imwrite
 import numpy as np
-import unittest
-from src import my_function
+from correct_images.src import utils
 
 class TestUtils(unittest.TestCase):
 
