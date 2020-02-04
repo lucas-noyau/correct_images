@@ -1,2 +1,2 @@
 language: python
-script: python test/test_utils.py
+script: python app/test/test_utils.py
