@@ -1,11 +1,11 @@
 import unittest
 import tempfile
-from src import utils
 import os
 import json
 from cv2 import imread, imwrite
 import numpy as np
-
+import unittest
+from src import my_function
 
 class TestUtils(unittest.TestCase):
 
@@ -18,7 +18,7 @@ class TestUtils(unittest.TestCase):
                 result = json.load(json_file)
         finally:
             os.remove(output_filepath)
-        self.assertEqual(result, data)
+        assertEquals(result, data)
 
     def test_get_image_and_info(self):
         test_image = np.array([[[1, 2, 3], [2, 3, 4]], [[3, 4, 5], [4, 5, 6]]])
@@ -28,9 +28,9 @@ class TestUtils(unittest.TestCase):
             image, image_width, image_height = utils.get_image_and_info(image_filepath)
         finally:
             os.remove(image_filepath)
-        self.assertEqual(image.all(), test_image.all())
-        self.assertEqual((image_width, image_height), (2, 2))
+        assertEquals(image.all(), test_image.all())
+        assertEquals((image_width, image_height), (2, 2))
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()   
