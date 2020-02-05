@@ -7,4 +7,3 @@ coveralls
 cython
 pycocotools
 matplotlib
-csv
