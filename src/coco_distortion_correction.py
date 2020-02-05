@@ -147,8 +147,10 @@ def distortion_correct_entire_coco_directory(
         )
 
 
+def main():
+    distortion_correct_entire_coco_directory('/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/', '/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/', '/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/configuration/camera_parameters_unagi6k.yml')
 
-distortion_correct_entire_coco_directory('/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/', '/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/', '/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/configuration/camera_parameters_unagi6k.yml')
 
+if __name__ == "__main__":
+    main()
 
-# correct_all_images('./processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/train/JPEGImages/', './configuration/camera_parameters_unagi6k.yml' , './processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/train/JPEGImages/')
