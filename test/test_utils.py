@@ -5,7 +5,6 @@ import json
 from cv2 import imwrite
 import numpy as np
 import sys
-import csv
 
 SRC_DIR = os.path.dirname(os.path.abspath("./src/utils.py"))
 print(SRC_DIR)
@@ -37,7 +36,9 @@ class TestUtils(unittest.TestCase):
         self.assertEqual((image_width, image_height), (2, 2))
 
     def test_get_altitude(self):
-        altitude = utils.get_altitude("fakeimage2", './test/mock_data/mock_altitude.csv')
+        altitude = utils.get_altitude(
+            "fakeimage2", "./test/mock_data/mock_altitude.csv"
+        )
         self.assertEqual(altitude, "6.5")
 
 

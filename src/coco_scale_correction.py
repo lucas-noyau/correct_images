@@ -5,7 +5,12 @@ import numpy as np
 from pathlib import Path
 from pycocotools.coco import COCO
 import os
-from utils import *
+from utils import (
+    initialise_data_dictionary,
+    get_altitude,
+    save_new_annotations_file,
+    get_image_and_info,
+)
 
 # Unagi
 # horiz 55.96341714   vert 47.81781398
@@ -216,5 +221,5 @@ def main():
     # coco_labels_scale_correction('./large_megafauna/val/', './large_megafauna/', './large_megafauna/json_renav/csv/particle_filter/auv_pf_LC.csv', horizontal_opening_angle, vertical_opening_angle)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
