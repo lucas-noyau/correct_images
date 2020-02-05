@@ -1,5 +1,8 @@
 import unittest
-
+SRC_DIR = os.path.dirname(os.path.abspath('./src/coco_scale_correction.py'))
+print(SRC_DIR)
+sys.path.append(SRC_DIR)
+import coco_scale_correction
 
 class TestCocoScaleCorrection(unittest.TestCase):
 

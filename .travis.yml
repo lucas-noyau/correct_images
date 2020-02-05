@@ -1,4 +1,4 @@
 language: python
 script: 
-  - coverage run --source=src test/test_utils.py
+  - coverage run --source=src test/test_utils.py test/test_scale_correction.py
 after_success: coveralls
