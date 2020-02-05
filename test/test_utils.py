@@ -10,6 +10,7 @@ print(SRC_DIR)
 sys.path.append(SRC_DIR)
 import utils
 
+
 class TestUtils(unittest.TestCase):
 
     def test_save_new_annotations_file(self):
@@ -21,7 +22,7 @@ class TestUtils(unittest.TestCase):
                 result = json.load(json_file)
         finally:
             os.remove(output_filepath)
-        self.assertEquals(result, data)
+        self.assertEqual(result, data)
 
     def test_get_image_and_info(self):
         test_image = np.array([[[1, 2, 3], [2, 3, 4]], [[3, 4, 5], [4, 5, 6]]])
@@ -31,9 +32,9 @@ class TestUtils(unittest.TestCase):
             image, image_width, image_height = utils.get_image_and_info(image_filepath)
         finally:
             os.remove(image_filepath)
-        self.assertEquals(image.all(), test_image.all())
-        self.assertEquals((image_width, image_height), (2, 2))
+        self.assertEqual(image.all(), test_image.all())
+        self.assertEqual((image_width, image_height), (2, 2))
 
 
 if __name__ == '__main__':
-    unittest.main()   
+    unittest.main()

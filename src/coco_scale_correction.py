@@ -182,25 +182,25 @@ def rescale_entire_coco_directory(
 # rescale_entire_coco_directory('./processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/', './processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/rescaled/', './auv_pf_LC.csv')
 # rescale_entire_coco_directory('./processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/', './processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/rescaled/', './auv_pf_LC.csv')
 rescale_entire_coco_directory(
-    "./processed/image/i20180805_215810/for_iridis/greyworld_correction/distortion_correction/not_rescaled/",
-    "./processed/image/i20180805_215810/for_iridis/greyworld_correction/distortion_correction/rescaled/",
-    "./auv_pf_LC.csv",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/greyworld_correction/distortion_correction/not_rescaled/",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/greyworld_correction/distortion_correction/rescaled/",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
 )
 rescale_entire_coco_directory(
-    "./processed/image/i20180805_215810/for_iridis/greyworld_correction/no_distortion_correction/not_rescaled/",
-    "./processed/image/i20180805_215810/for_iridis/greyworld_correction/no_distortion_correction/rescaled/",
-    "./auv_pf_LC.csv",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/rescaled/",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
 )
 rescale_entire_coco_directory(
-    "./processed/image/i20180805_215810/for_iridis/attenuation_correction/distortion_correction/not_rescaled/",
-    "./processed/image/i20180805_215810/for_iridis/attenuation_correction/distortion_correction/rescaled/",
-    "./auv_pf_LC.csv",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/attenuation_correction/distortion_correction/not_rescaled/",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/attenuation_correction/distortion_correction/rescaled/",
+    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
 )
-rescale_entire_coco_directory(
-    "./processed/image/i20180805_215810/for_iridis/attenuation_correction/no_distortion_correction/not_rescaled/",
-    "./processed/image/i20180805_215810/for_iridis/attenuation_correction/no_distortion_correction/rescaled/",
-    "./auv_pf_LC.csv",
-)
+# rescale_entire_coco_directory(
+#     "./processed/image/i20180805_215810/for_iridis/attenuation_correction/no_distortion_correction/not_rescaled/",
+#     "./processed/image/i20180805_215810/for_iridis/attenuation_correction/no_distortion_correction/rescaled/",
+#     "./auv_pf_LC.csv",
+# )
 
 target_pixel_size = 0.00139
 # rescale_entire_coco_directory('./coco/dive1/D/', './coco/dive1/D_rescaled/', './filelist_auv_nav_D.csv')

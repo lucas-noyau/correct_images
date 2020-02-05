@@ -3,7 +3,9 @@ import os
 import numpy as np
 from pathlib import Path
 import yaml
+from pycocotools.coco import COCO
 from utils import *
+import math
 
 
 
@@ -23,11 +25,44 @@ def calc_distortion_mapping(camera_parameter_file_path, width, height):
                                                (width, height), 5)
     return map_x, map_y
 
+def get_camera_matrix(camera_parameter_file_path, width, height):
+    mono_cam = MonoCamera(camera_parameter_file_path)
+    cam_mat, _ = cv2.getOptimalNewCameraMatrix(mono_cam.K, mono_cam.d,
+                                               (width, height), 0)
+    return cam_mat
+
+
+
+
+
+def undistort_point(point, distortion_mapping_x, distortion_mapping_y):
+    point = point.reshape(2)
+    x_distance = np.abs(distortion_mapping_x-point[0])
+    y_distance = np.abs(distortion_mapping_y-point[1])
+    total_distance = x_distance + y_distance
+    return np.flip(np.unravel_index(total_distance.argmin(), total_distance.shape))
+
+
+def undistort_points(points, distortion_mapping_x, distortion_mapping_y):
+    new_points=[]
+    for point in points:
+        print('old point: '+str(point))
+        new_point = undistort_point(point, distortion_mapping_x, distortion_mapping_y)
+        print('new point: '+str(new_point))
+        if new_point is not None:
+            new_points.append(new_point)
+        else:
+            print("point outside of edge of image, using original point")
+            print(point)
+            exit()
+            new_points.append(point.reshape(2).tolist())
+    print(new_points)
+    return new_points 
 
 def coco_labels_distort_correction(
     coco_labels_filepath,
     output_coco_labels_filepath,
-    altitude_data_filepath,
+    camera_parameter_file_path,
     image_width,
     image_height,
 ):
@@ -39,6 +74,7 @@ def coco_labels_distort_correction(
     cat_ids = coco.getCatIds()
 
     for img_id in img_ids:
+        print(img_id)
         # get annotations for image
         anns_ids = coco.getAnnIds(imgIds=[img_id], catIds=cat_ids, iscrowd=None)
         anns = coco.loadAnns(anns_ids)
@@ -46,47 +82,22 @@ def coco_labels_distort_correction(
         image_width = coco_image["width"]
         image_height = coco_image["height"]
         image_name = coco_image["file_name"].split("/")[1].split(".")[0]
-        altitude = get_altitude(image_name, altitude_data_filepath)
-        print(
-            "altitude: "
-            + str(altitude)
-            + ", image height: "
-            + str(image_height)
-            + ", vertical opening angle: "
-            + str(vertical_opening_angle)
-        )
-        pixel_height = get_pixel_size(altitude, image_height, vertical_opening_angle)
-        pixel_width = get_pixel_size(altitude, image_width, horizontal_opening_angle)
-        vertical_rescale = pixel_height / target_pixel_size
-        horizontal_rescale = pixel_width / target_pixel_size
-        print(
-            "pixel_height - " + str(pixel_height) + ", pixel_width: " + str(pixel_width)
-        )
-        print(
-            "rescaling coco - " + str(vertical_rescale) + " " + str(horizontal_rescale)
-        )
-
-        for image in data["images"]:
-            if image["id"] == img_id:
-                image["height"] = int(image["height"] * vertical_rescale)
-                image["width"] = int(image["width"] * horizontal_rescale)
+        distortion_mapping_x, distortion_mapping_y  = calc_distortion_mapping(camera_parameter_file_path, image_width, image_height)
+        print(distortion_mapping_x.shape)
+        print(distortion_mapping_y.shape)
         # loop through, correcting scale on each annotation and appending to new list of annotations
         for ann in anns:
-            new_area = ann["area"] * horizontal_rescale * vertical_rescale
-            new_bounding_box = [
-                p * vertical_rescale if i % 2 else p * horizontal_rescale
-                for i, p in enumerate(ann["bbox"])
-            ]
-            new_segmentation = [
-                p * vertical_rescale if i % 2 else p * horizontal_rescale
-                for i, p in enumerate(ann["segmentation"][0])
-            ]
+            n_points = int(len(ann["segmentation"][0])/2)
+            bbox = np.reshape(np.array(ann["bbox"], dtype=float), [2,2], order='C')
+            bbox = np.array(undistort_points(bbox, distortion_mapping_x, distortion_mapping_y), dtype=int)
+            seg = np.reshape(np.array(ann["segmentation"][0], dtype=float), [n_points, 1 ,2], order='C')
+            seg = np.array(undistort_points(seg, distortion_mapping_x, distortion_mapping_y), dtype=int)
             new_annotation = {
-                "segmentation": [new_segmentation],
-                "area": new_area,
+                "segmentation": [seg.flatten(order='C').tolist()],
+                "area": ann["area"],
                 "iscrowd": 0,
                 "image_id": ann["image_id"],
-                "bbox": new_bounding_box,
+                "bbox": bbox.flatten(order='C').tolist(),
                 "category_id": ann["category_id"],
                 "id": ann["id"],
             }
@@ -124,8 +135,8 @@ def distortion_correct_entire_coco_directory(
         )
         coco_labels_distort_correction(
             input_dataset_directory + directory,
-            auv_dive_particle_filter_file,
             output_dataset_directory + directory,
+            auv_dive_particle_filter_file,
             1280,
             1024,
         )
@@ -137,7 +148,7 @@ def distortion_correct_entire_coco_directory(
 
 
 
+distortion_correct_entire_coco_directory('/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/', '/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/', '/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/configuration/camera_parameters_unagi6k.yml')
 
 
-
-correct_all_images('./processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/train/JPEGImages/', './configuration/camera_parameters_unagi6k.yml' , './processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/train/JPEGImages/')
+# correct_all_images('./processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/train/JPEGImages/', './configuration/camera_parameters_unagi6k.yml' , './processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/train/JPEGImages/')
