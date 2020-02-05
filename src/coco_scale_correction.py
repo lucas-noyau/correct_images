@@ -177,41 +177,45 @@ def rescale_entire_coco_directory(
             output_dataset_directory + directory + "JPEGImages/",
         )
 
+def main():
+    # target_pixel_size = 0.0055
+    # rescale_entire_coco_directory('./processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/', './processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/rescaled/', './auv_pf_LC.csv')
+    # rescale_entire_coco_directory('./processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/', './processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/rescaled/', './auv_pf_LC.csv')
+    rescale_entire_coco_directory(
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/greyworld_correction/distortion_correction/not_rescaled/",
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/greyworld_correction/distortion_correction/rescaled/",
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
+    )
+    rescale_entire_coco_directory(
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/",
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/rescaled/",
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
+    )
+    rescale_entire_coco_directory(
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/attenuation_correction/distortion_correction/not_rescaled/",
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/attenuation_correction/distortion_correction/rescaled/",
+        "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
+    )
+    # rescale_entire_coco_directory(
+    #     "./processed/image/i20180805_215810/for_iridis/attenuation_correction/no_distortion_correction/not_rescaled/",
+    #     "./processed/image/i20180805_215810/for_iridis/attenuation_correction/no_distortion_correction/rescaled/",
+    #     "./auv_pf_LC.csv",
+    # )
 
-# target_pixel_size = 0.0055
-# rescale_entire_coco_directory('./processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/', './processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/rescaled/', './auv_pf_LC.csv')
-# rescale_entire_coco_directory('./processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/not_rescaled/', './processed/image/i20180805_215810/for_iridis/histogram_normalised/no_distortion_correction/rescaled/', './auv_pf_LC.csv')
-rescale_entire_coco_directory(
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/greyworld_correction/distortion_correction/not_rescaled/",
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/greyworld_correction/distortion_correction/rescaled/",
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
-)
-rescale_entire_coco_directory(
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/not_rescaled/",
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/histogram_normalised/distortion_correction/rescaled/",
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
-)
-rescale_entire_coco_directory(
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/attenuation_correction/distortion_correction/not_rescaled/",
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/processed/image/i20180805_215810/for_iridis/attenuation_correction/distortion_correction/rescaled/",
-    "/Volumes/jw22g14_phd/fk2018/tunasand/20180805_215810_ts_un6k/auv_pf_LC.csv",
-)
-# rescale_entire_coco_directory(
-#     "./processed/image/i20180805_215810/for_iridis/attenuation_correction/no_distortion_correction/not_rescaled/",
-#     "./processed/image/i20180805_215810/for_iridis/attenuation_correction/no_distortion_correction/rescaled/",
-#     "./auv_pf_LC.csv",
-# )
+    target_pixel_size = 0.00139
+    # rescale_entire_coco_directory('./coco/dive1/D/', './coco/dive1/D_rescaled/', './filelist_auv_nav_D.csv')
+    # rescale_entire_coco_directory('./coco/dive2/A/', './coco/dive2/A_rescaled/', './filelist_auv_nav_A.csv')
+    # rescale_entire_coco_directory('./coco/dive2/B/', './coco/dive2/B_rescaled/', './filelist_auv_nav_B.csv')
+    # rescale_entire_coco_directory('./coco/dive2/C/', './coco/dive2/C_rescaled/', './filelist_auv_nav_C.csv')
+    # rescale_entire_coco_directory('./coco/dive3/B/', './coco/dive3/B_rescaled/', './filelist_auv_nav_B.csv')
+    # rescale_entire_coco_directory('./coco/dive3/C/', './coco/dive3/C_rescaled/', './filelist_auv_nav_C.csv')
 
-target_pixel_size = 0.00139
-# rescale_entire_coco_directory('./coco/dive1/D/', './coco/dive1/D_rescaled/', './filelist_auv_nav_D.csv')
-# rescale_entire_coco_directory('./coco/dive2/A/', './coco/dive2/A_rescaled/', './filelist_auv_nav_A.csv')
-# rescale_entire_coco_directory('./coco/dive2/B/', './coco/dive2/B_rescaled/', './filelist_auv_nav_B.csv')
-# rescale_entire_coco_directory('./coco/dive2/C/', './coco/dive2/C_rescaled/', './filelist_auv_nav_C.csv')
-# rescale_entire_coco_directory('./coco/dive3/B/', './coco/dive3/B_rescaled/', './filelist_auv_nav_B.csv')
-# rescale_entire_coco_directory('./coco/dive3/C/', './coco/dive3/C_rescaled/', './filelist_auv_nav_C.csv')
+    # rescale_entire_coco_directory('./processed/image/i20180805_215810/attenuation_correction/distortion_correction/dropped_resolution/', './processed/image/i20180805_215810/attenuation_correction/distortion_correction/dropped_resolution/', './auv_pf_LC.csv')
+    # rescale_entire_coco_directory('./processed/image/i20180805_215810/greyworld_correction/distortion_correction/dropped_resolution/', './processed/image/i20180805_215810/greyworld_correction/distortion_correction/dropped_resolution/', './auv_pf_LC.csv')
+    # rescale_entire_coco_directory('./processed/image/i20180805_215810/greyworld_correction/no_distortion_correction/dropped_resolution/', './processed/image/i20180805_215810/greyworld_correction/no_distortion_correction/dropped_resolution/', './auv_pf_LC.csv')
 
-# rescale_entire_coco_directory('./processed/image/i20180805_215810/attenuation_correction/distortion_correction/dropped_resolution/', './processed/image/i20180805_215810/attenuation_correction/distortion_correction/dropped_resolution/', './auv_pf_LC.csv')
-# rescale_entire_coco_directory('./processed/image/i20180805_215810/greyworld_correction/distortion_correction/dropped_resolution/', './processed/image/i20180805_215810/greyworld_correction/distortion_correction/dropped_resolution/', './auv_pf_LC.csv')
-# rescale_entire_coco_directory('./processed/image/i20180805_215810/greyworld_correction/no_distortion_correction/dropped_resolution/', './processed/image/i20180805_215810/greyworld_correction/no_distortion_correction/dropped_resolution/', './auv_pf_LC.csv')
+    # coco_labels_scale_correction('./large_megafauna/val/', './large_megafauna/', './large_megafauna/json_renav/csv/particle_filter/auv_pf_LC.csv', horizontal_opening_angle, vertical_opening_angle)
 
-# coco_labels_scale_correction('./large_megafauna/val/', './large_megafauna/', './large_megafauna/json_renav/csv/particle_filter/auv_pf_LC.csv', horizontal_opening_angle, vertical_opening_angle)
+
+if __name__=="__main__":
+    main()
