@@ -3,7 +3,6 @@ from cv2 import imread, imwrite
 from PIL import Image
 import numpy as np
 from pathlib import Path
-import json
 from pycocotools.coco import COCO
 import os
 from utils import *
@@ -90,7 +89,6 @@ def coco_labels_scale_correction(
             }
             data["annotations"].append(new_annotation)
     save_new_annotations_file(output_coco_labels_filepath, data)
-    
 
 
 def rescale_masks_and_images(
@@ -176,6 +174,7 @@ def rescale_entire_coco_directory(
             auv_dive_particle_filter_file,
             output_dataset_directory + directory + "JPEGImages/",
         )
+
 
 def main():
     # target_pixel_size = 0.0055

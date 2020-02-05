@@ -2,7 +2,7 @@ import unittest
 import tempfile
 import os
 import json
-from cv2 import imread, imwrite
+from cv2 import imwrite
 import numpy as np
 import sys
 import csv
@@ -37,32 +37,7 @@ class TestUtils(unittest.TestCase):
         self.assertEqual((image_width, image_height), (2, 2))
 
     def test_get_altitude(self):
-        fake_data = [
-            {
-                "image_name": "fakename",
-                "header1": 5,
-                "header2": 10,
-                "header3": 48,
-                "header4": 23,
-                "header5": 0,
-                "header6": 1,
-                "header7": 7,
-                "header8": 3,
-                "header9": 4,
-                "header10": 1,
-                "header11": "6.5"
-            }
-        ]
-        output_filepath = tempfile.mkstemp(suffix=".csv")[1]
-        try:
-            with open(output_filepath, 'w') as csvfile:
-                writer = csv.DictWriter(csvfile, fieldnames=fake_data[0].keys())
-                writer.writeheader()
-                for data in fake_data:
-                    writer.writerow(data)
-        except IOError:
-            print("I/O error")
-        altitude = utils.get_altitude("fakename", output_filepath)
+        altitude = utils.get_altitude("fakeimage2", './test/mock_data/mock_altitude.csv')
         self.assertEqual(altitude, "6.5")
 
 
