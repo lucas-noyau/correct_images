@@ -6,3 +6,4 @@ python-coveralls
 coveralls
 cython
 pycocotools
+matplotlib
