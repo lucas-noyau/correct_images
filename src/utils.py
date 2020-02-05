@@ -2,7 +2,7 @@ import json
 import numpy as np
 from pathlib import Path
 import yaml
-from cv2 import imread, imwrite
+from cv2 import imread
 
 
 def opencv_matrix(loader, node):
@@ -32,7 +32,7 @@ def get_altitude(image_name, data_filename):
         print("ERROR: image name not found in data file")
         print(image_name)
         exit()
-    altitude = matched_lines[0].split(",")[11]
+    altitude = matched_lines[0].split(",")[11].strip()
     return altitude
 
 
