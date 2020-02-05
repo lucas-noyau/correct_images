@@ -4,4 +4,5 @@ Pillow==6.2.0
 PyYAML==5.1.1
 python-coveralls
 coveralls
+Cython
 pycocotools
