@@ -4,4 +4,5 @@ before_install:
 script: 
   - coverage run --source=src test/test_utils.py 
   - coverage run --source=src test/test_scale_correction.py
+  - coverage run --source=src test/test_distortion_correction.py
 after_success: coveralls
